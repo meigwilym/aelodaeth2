@@ -1,0 +1,118 @@
+a person wants to join the club
+
+###
+
+give Member details
+
+choose Membership level
+
+pay once
+
+### 
+
+give member details
+
+select Memberhisp level
+
+make a payment monthly
+
+=============
+
+An existing member is made a life member
+
+###
+
+select member 
+
+give life membership
+
+=============
+
+membership type 1off/recurring  duration
+_____________________________________________________
+full member     paying once     limited membership
+full member     paying monthly  unlimited membership
+full member     paying yearly   unlimited membership
+
+a member can pay one off fee and receive limited membership
+
+a member can make incremental payments and receive unlimited membership
+
+Member {
+
+    subscription() // returns current active Subscription. select where (today < subscription_expiry) or (subscription_expiry = null) 
+    
+    subscriptionHistory() // returns all Subscription instances
+}
+
+Subscription {
+    
+    getExpiry() // when it ends. either a set date or never 
+    
+    membership() // full, junior, player, life [parent]
+    
+    payments() // Payment - can return null as life members won't have a payment
+    
+    member() // parent
+    
+    acceptPayment(Payment)
+    
+    setMembership(Membership)
+}
+
+Payment { 
+
+    type // one off or recurring    
+    amount // in pounds    
+    method // cash/cheque/bacs/SO/GoCardless
+    
+    subscription() // parent
+    
+    payBy(PaymentMethod)
+}
+
+MembershipType {
+
+    type // name, desc
+    cost // £££
+    duration // number of months
+    
+}
+
+// new member
+$member = new Member(['name' => 'mei', address1 => 'ty llwyn' ]) // etc
+
+// creating a subscription
+
+// step 1
+$subscription = new Subscription()
+
+
+// 2. Set Membership Level
+$membership = Membership::find($request->input('membership_id'))
+
+$subscription->setMembership($membership)
+
+// at this point $subscription is still not persisted (nor even figured out the duration and cost)
+
+// 4. apply to member
+$member->subscribe($subscription)
+
+// $subscription has calculated cost, duration
+// $subscription is now saved
+
+// 3. payment (optional)
+$method = PaymentMethod::find($request->input('payment_method_id')) 
+
+$payment = ( new Payment() )->payBy($method)
+
+// payment is still not persisted
+
+$subscription->acceptPayment($payment)
+
+// $payment has now been persisted. no need to save subscription as changes are all on Payment model
+
+
+
+
+
