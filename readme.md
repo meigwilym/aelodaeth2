@@ -8,6 +8,8 @@ I watched Adam Wathan's excellent 'Chasing "Perfect"' at Laracon EU 2015.
 
 The simplicity of his approach to program design and testing struck a chord with me. I then sat down and tried a similar approach to the design of this rebuild. 
 
+You can read my development notes in the `./dev-notes-models.txt` file. 
+
 #### Original Version
 
 This was originally part of a much larger CMS built on CodeIgniter for my local rugby club. 
@@ -21,6 +23,8 @@ Parts of the original code is available at [meigwilym/aelodaeth](http://github.c
 Figure out business logic of how members join and pay for their subscription. 
 
 Model the business logic in code and the database. 
+
+Write the tests to validate the domain model. 
 
 Create forms and controllers. Integrate with the app model. 
 
