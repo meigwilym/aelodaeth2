@@ -14,6 +14,7 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
@@ -25,6 +26,9 @@ class CreateMembersTable extends Migration
             $table->string('rhif_ffon');
             $table->string('notes');
             $table->timestamps();
+        });
+        Schema::table('members', function(Blueprint $table){
+          $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
