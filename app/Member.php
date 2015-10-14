@@ -6,6 +6,11 @@ class Member extends BaseModel
 {
   protected $table = 'members';
 
+  public function user()
+  {
+      return $this->belongsTo(User::class);
+  }
+
   public function subscription()
   {
     return $this->hasOne(Subscription::class)
