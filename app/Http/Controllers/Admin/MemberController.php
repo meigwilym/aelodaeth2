@@ -30,7 +30,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.members.create');
     }
 
     /**
@@ -39,9 +39,12 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemberFormRequest $request)
     {
-        //
+        $member = Member::create($request->all());
+
+        return redirect()->route('admin.members')
+            ->withSuccess('New member created');
     }
 
     /**
@@ -55,17 +58,6 @@ class MemberController extends Controller
         $member = Member::with('subscriptionHistory.membership', 'subscriptionHistory.payments.method')->find($id);
 
         return view('admin.members.show', compact('member'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

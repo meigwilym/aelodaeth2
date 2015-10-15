@@ -26,7 +26,7 @@ class MemberFormRequest extends Request
         return [
             'first_name' => 'required|',
             'last_name' => 'required|',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:members',
             'billing_address1' => 'required|',
             'billing_address2' => '',
             'billing_address3' => '',
