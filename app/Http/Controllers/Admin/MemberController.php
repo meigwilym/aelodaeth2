@@ -17,7 +17,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with('subscription')->get();
+        $members = Member::all();
 
         return view('admin.members.index', compact('members'));
     }
@@ -51,7 +51,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Member::with('subscriptionHistory')->find($id);
+        $member = Member::with('subscriptionHistory.membership', 'subscriptionHistory.payments.method')->find($id);
 
         return view('admin.members.show', compact('member'));
     }

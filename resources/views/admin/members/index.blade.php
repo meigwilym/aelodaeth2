@@ -21,18 +21,14 @@
                 </thead>
                 <tbody>
                   @foreach($members as $member)
-                    <tr id="member_{!! $member->id !!}">
+                    <tr data-id="{!! $member->id !!}">
                       <td>{!! link_to_route('admin.members.show', $member->fullName, $member->id) !!}</td>
                       <td>{!! $member->email !!}</td>
                       <td>{!! $member->address !!}</td>
                       <td>{!! $member->billing_town !!}</td>
                       <td>{!! $member->billing_postcode !!}</td>
                       <td>{!! $member->rhif_ffon !!}</td>
-                      <td>
-                          @if($member->subscription)
-                          yes
-                          @endif
-                      </td>
+                      <td></td>
                     </tr>
                   @endforeach
                 </tbody>

@@ -4,7 +4,7 @@ namespace App;
 
 class Membership extends BaseModel
 {
-  protected $table = 'membership';
+  protected $table = 'memberships';
 
   public function subscriptions()
   {
