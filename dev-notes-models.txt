@@ -12,7 +12,7 @@ pay once
 
 give member details
 
-select Memberhisp level
+select Membership level
 
 make a payment monthly
 
@@ -47,7 +47,7 @@ Member {
 
 Subscription {
     
-    getExpiry() // when it ends. either a set date or never 
+    getExpiry() // when it ends. either a set date or never (null?)
     
     membership() // full, junior, player, life [parent]
     
@@ -77,6 +77,10 @@ MembershipType {
     cost // £££
     duration // number of months
     
+}
+
+PaymentMethod {
+
 }
 
 // new member
@@ -113,6 +117,33 @@ $subscription->acceptPayment($payment)
 // $payment has now been persisted. no need to save subscription as changes are all on Payment model
 
 
+########################################################################################
 
+## Admin functions
 
+dashboard: No current, Total, all, new member, pie chart current vs ex
 
+View all members and non members
+
+view current members
+view all members by membership type
+view all members by payment type
+create/view/edit single member details
+view single member subscriptions
+create subscription for member
+
+view monthly report
+
+create/view/edit membership types
+
+create/view/edit payment methods
+
+create User from current member
+
+attach User to current member
+
+## Front end
+
+New Member can join and pay online with Stripe. 
+
+existing members can login to pay with Stripe. 
