@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
 /**
  * A static class to figure out the current season, based on this month. 
  * 
@@ -24,15 +26,15 @@ class Season
             if (date('m') > 6) {
                 self::$name = date('y').'-'.(date('y') + 1);
 
-                self::$starts = new \DateTime(date('y').'-7-1'); // 1st july
-                self::$ends   = new \DateTime((date('y') + 1).'-6-30 23:59:59'); // end of june next year
+                self::$starts = Carbon::parse(date('y').'-7-1'); // 1st july
+                self::$ends   = Carbon::parse((date('y') + 1).'-6-30 23:59:59'); // end of june next year
             }
             // from Jan - Jun
             else {
                 self::$name = (date('y') - 1).'-'.date('y');
 
-                self::$starts = new \DateTime((date('Y') - 1).'-7-1');
-                self::$ends   = new \DateTime((date('y')).'-6-30 23:59:59');
+                self::$starts = Carbon::parse((date('Y') - 1).'-7-1');
+                self::$ends   = Carbon::parse((date('y')).'-6-30 23:59:59');
             }
         }
     }
