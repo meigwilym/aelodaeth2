@@ -43,7 +43,7 @@ class MemberController extends Controller
     {
         $member = Member::create($request->all());
 
-        return redirect()->route('admin.members')
+        return redirect()->route('admin.members.show', $member->id)
             ->withSuccess('New member created');
     }
 

@@ -6,8 +6,10 @@
   <div class="row">
     <div class="col-sm-12">
 
-      <h1>{!! $member->fullName !!}</h1>
-
+      <div class="page-header">
+        <h1>{!! $member->fullName !!}</h1>
+      </div>
+      
       <ul class="nav nav-tabs">
         <li class="active"><a href="#member" data-toggle="tab">Member Details</a></li>
         <li><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>

@@ -40,6 +40,7 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/admin">Admin</a></li>
             <li><a href="/admin/members">Members</a></li>
+            <li><a href="/admin/members/create" title="Create a new member">+New</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
