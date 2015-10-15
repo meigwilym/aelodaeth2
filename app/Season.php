@@ -12,9 +12,9 @@ namespace App;
  */
 class Season
 {
-  protected static $name;
-  protected static $starts;
-  protected static $ends;
+  public static $name;
+  public static $starts;
+  public static $ends;
   
   public function __construct()
   {

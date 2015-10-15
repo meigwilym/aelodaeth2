@@ -14,7 +14,7 @@ class Member extends BaseModel
     public function subscription()
     {
         return $this->hasOne(Subscription::class)
-                ->active();
+                ; //->active();
     }
 
     public function subscriptionHistory()
@@ -26,6 +26,16 @@ class Member extends BaseModel
     public function scopeWithSubscriptions($query)
     {
         return $query->with('subscriptionHistory');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->attributes['first_name'].' '.$this->attributes['last_name'];
+    }
+
+    public function getAddressAttribute()
+    {
+        //return implode(', ', [$this->attributes['billing_address1'], $this->attributes['billing_address2'], $this->attributes['billing_address3']]);
     }
     
     /**

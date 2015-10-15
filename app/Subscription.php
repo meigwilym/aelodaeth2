@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Subscription extends Model
+class Subscription extends BaseModel
 {
   protected $table = 'subscriptions';
   
@@ -34,14 +34,14 @@ class Subscription extends Model
   public function scopeActive($query)
   {
     return $query->whereNull('ends_on')
-            ->orWhere('ends_on', '>', Season::$start);
+            ->orWhere('ends_on', '>', Season::$starts);
   }
   
   // ================ Business Logic
   
   public function isActive()
   {
-    return $this->ends_on > Season::$start;
+    return $this->ends_on > Season::$starts;
   }
   
   
