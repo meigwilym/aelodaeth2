@@ -9,8 +9,6 @@
       <p>...with your email address and password.</p>
       {!! Form::open(['url' => 'login']) !!}
 
-      {!! csrf_field() !!}
-
       {!! BootForm::email('email', 'Email Address') !!}
 
       {!! BootForm::password() !!}
