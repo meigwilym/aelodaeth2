@@ -6,6 +6,8 @@ class Member extends BaseModel
 {
     protected $table = 'members';
 
+    protected $fillable = ['first_name', 'last_name', 'email', 'billing_address1', 'billing_address2', 'billing_address3', 'billing_town', 'billing_postcode', 'rhif_ffon', 'notes'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -36,8 +38,8 @@ class Member extends BaseModel
     public function getAddressAttribute()
     {
         $address = $this->attributes['billing_address1'];
-        if($this->attributes['billing_address2']) $address = $this->attributes['billing_address2'];
-        if($this->attributes['billing_address3']) $address = $this->attributes['billing_address3'];
+        if($this->attributes['billing_address2']) $address .= ', '.$this->attributes['billing_address2'];
+        if($this->attributes['billing_address3']) $address .= ', '.$this->attributes['billing_address3'];
 
         return $address;
     }

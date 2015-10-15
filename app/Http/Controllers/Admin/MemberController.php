@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Member, App\Subscription;
+use App\Http\Requests\MemberFormRequest;
 
 class MemberController extends Controller
 {
@@ -74,9 +75,14 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MemberFormRequest $request, $id)
     {
-        //
+        $member = Member::find($id);
+
+        $member->update($request->all());
+
+        return redirect()->route('admin.members')
+            ->withSuccess('Member data saved');
     }
 
     /**

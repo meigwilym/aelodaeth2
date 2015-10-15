@@ -3,8 +3,8 @@
   <div class="col-sm-6">
 
     <div class="row">
-      <div class="col-sm-6">{!! Bootform::text('first_name', 'First Name') !!}</div>
-      <div class="col-sm-6">{!! Bootform::text('last_name', 'Last Name') !!}</div>
+        <div class="col-sm-6">{!! Bootform::text('first_name', 'First Name') !!}</div>
+        <div class="col-sm-6">{!! Bootform::text('last_name', 'Last Name') !!}</div>
     </div>
 
     {!! Bootform::email() !!}
@@ -21,13 +21,13 @@
     {!! Bootform::text('billing_address3', '3rd Line of Address') !!}
     
     <div class="row">
-      <div class="col-sm-6">{!! Bootform::text('billing_town', 'Town') !!}</div>
-      <div class="col-sm-6">{!! Bootform::text('billing_postcode', 'Post Code') !!}</div>
+        <div class="col-sm-6">{!! Bootform::text('billing_town', 'Town') !!}</div>
+        <div class="col-sm-6">{!! Bootform::text('billing_postcode', 'Post Code') !!}</div>
     </div>
     
   </div>
 </div>
 
-{!! BootForm::submit('Save') !!}
+{!! BootForm::submit('Save') !!} or <a href="{!! route('admin.members') !!}">cancel</a>
 
 {!! BootForm::close() !!}
