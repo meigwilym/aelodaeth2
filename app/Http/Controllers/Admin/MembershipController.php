@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 use App\Member, App\Subscription;
 
-class MemberController extends Controller
+class MembershipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with('subscription')->get();
-
-        return view('admin.members.index', compact('members'));
+        
     }
 
     /**
@@ -51,9 +49,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Member::with('subscriptionHistory')->find($id);
-
-        return view('admin.members.show', compact('member'));
+        //
     }
 
     /**
