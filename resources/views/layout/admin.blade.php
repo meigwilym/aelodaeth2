@@ -45,6 +45,7 @@
       </div>
     </nav>
 
+    @include('layout.notifications')
 
     @yield('content')
 
