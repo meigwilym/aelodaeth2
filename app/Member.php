@@ -45,10 +45,10 @@ class Member extends BaseModel
     }
     
     /**
-     * Final part of the process
+     * Apply a subscription to a member
      *
      * @param \App\Subscription $subscription
-     * @return type
+     * @return object
      */
     public function subscribe(Subscription $subscription)
     {
@@ -57,5 +57,14 @@ class Member extends BaseModel
         $subscription->cost    = $subscription->membership->cost;
 
         $this->subscription()->save($subscription);
+    }
+
+    /**
+     * If the member's current subscription is active
+     * @return bool
+     */
+    public function isActive()
+    {
+        return ($this->subscription && $this->subscription->isActive());
     }
 }

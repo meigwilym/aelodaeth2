@@ -28,7 +28,11 @@
                       <td>{!! $member->billing_town !!}</td>
                       <td>{!! $member->billing_postcode !!}</td>
                       <td>{!! $member->rhif_ffon !!}</td>
-                      <td></td>
+                        <td>
+                          @if($member->isActive())
+                                yes
+                          @endif
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>

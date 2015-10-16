@@ -18,7 +18,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
+        $members = Member::with('subscription')->get();
 
         return view('admin.members.index', compact('members'));
     }
