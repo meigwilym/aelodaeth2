@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin
     Route::get('members/{id}/edit', ['as' => 'admin.members.edit', 'uses' => 'MemberController@edit']);
     Route::put('members/{id}/update', ['as' => 'admin.members.update', 'uses' => 'MemberController@update']);
 
+    // new subscription
+    Route::get('members/{id}/subscription/create', ['as' => 'admin.subscriptions.create', 'uses' => 'SubscriptionController@create']);
+    Route::post('members/{id}/subscription/store', ['as' => 'admin.subscriptions.store', 'uses' => 'SubscriptionController@store']);
+    
     // manage memberships
     Route::get('memberships', ['as' => 'admin.memberships', 'uses' => 'MembershipController@index']);
     Route::get('memberships/create', ['as' => 'admin.memberships.create', 'uses' => 'MembershipController@']);

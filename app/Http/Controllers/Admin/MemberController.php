@@ -55,7 +55,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Member::with('subscriptionHistory.membership', 'subscriptionHistory.payments.method')->find($id);
+        $member = Member::with('subscriptionHistory.membership', 'subscriptionHistory.payments.paymentMethod')->find($id);
 
         return view('admin.members.show', compact('member'));
     }

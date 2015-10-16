@@ -7,7 +7,7 @@
     <div class="col-sm-12">
 
       <div class="page-header">
-        <h1>{!! $member->fullName !!}</h1>
+        <h1>{!! $member->fullName !!} <a href="{!! route('admin.subscriptions.create', $member->id) !!}" class="btn btn-sm btn-primary">New Subscription</a></h1>
       </div>
       
       <ul class="nav nav-tabs">

@@ -2,7 +2,7 @@
 
 namespace App;
 
-class PaymentMethod extends Model
+class PaymentMethod extends BaseModel
 {  
   const TYPE_ONEOFF = 1;
   const TYPE_RECURRING = 2;

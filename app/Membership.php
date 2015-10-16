@@ -30,17 +30,17 @@ class Membership extends BaseModel
   private function calculateEndDate(Member $member, $duration)
   {
     // check for any subscriptions that are still running
-    $subHistory = $member->subscriptionHistory();
+    $subHistory = $member->subscriptionHistory()->get();
     
     if($subHistory->count() > 0)
     {    
       $previousSubscription = $subHistory->shift();
       if($previousSubscription->isActive())
       {
-        return $previousSubscription->add(new DateInterval('D'.$duration.'M'));
+        return $previousSubscription->ends_on->addMonths($duration);
       }
     }
     
-    return Season::$start->add(new DateInterval('D'.$duration.'M'));
+    return Season::starts()->addMonths($duration);
   }
 }

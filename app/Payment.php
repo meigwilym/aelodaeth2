@@ -13,7 +13,7 @@ class Payment extends BaseModel
     return $this->belongsTo(Subscription::class);
   }
   
-  public function method()
+  public function paymentMethod()
   {
     return $this->belongsTo(PaymentMethod::class);
   }
@@ -23,21 +23,10 @@ class Payment extends BaseModel
     return $this->hasManyThrough(Member::class, Subscription::class);
   }
   
-  /** 
-   * Which method was used - card, checque etc
-   * @param type $query
-   * @param type $method
-   * @return type
-   */
-  public function scopeOfMethod($query, $method)
-  {
-    return $query->where('method', $method);
-  }  
-  
   // ================ Business logic
   
   public function payBy(PaymentMethod $method)
   {
-    $this->method()->associate($method); 
+    $this->paymentMethod()->associate($method);
   }
 }

@@ -53,8 +53,8 @@ class Member extends BaseModel
     public function subscribe(Subscription $subscription)
     {
         // @todo check membership is set
-        $subscription->ends_on = $this->membership->endsOn($this);
-        $subscription->cost    = $this->membership->cost;
+        $subscription->ends_on = $subscription->membership->endsOn($this);
+        $subscription->cost    = $subscription->membership->cost;
 
         $this->subscription()->save($subscription);
     }

@@ -47,20 +47,7 @@ class Subscription extends BaseModel
 
     
     /**
-     * Accept a payment for the subscription
-     * 
-     * @param \App\Payment $payment
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function takePayment(Payment $payment)
-    {
-        $this->payments()->save($payment);
-    }
-
-    /**
      * Set the Membership level
-     * This has to be done as membership_id is a not nullable FK
-     * must call save() before end of request
      * 
      * @param \App\Membership $membership
      * @return Illuminate\Database\Eloquent\Relations\HasMany
@@ -70,5 +57,15 @@ class Subscription extends BaseModel
         $this->membership()->associate($membership);
     }
 
+    /**
+     * Accept a payment for the subscription
+     *
+     * @param \App\Payment $payment
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function takePayment(Payment $payment)
+    {
+        $this->payments()->save($payment);
+    }
     
 }

@@ -6,26 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Subscription, App\Member, App\Membership, App\Payment, App\PaymentMethod;
+use App\Http\Requests\SubscriptionRequest;
+
 class SubscriptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $member = Member::find($id);
+        $memberships = Membership::all();
+        $paymentMethods = PaymentMethod::all();
+        
+        return view('admin.subscriptions.create', compact('member', 'memberships', 'paymentMethods'));
     }
 
     /**
@@ -34,20 +31,26 @@ class SubscriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubscriptionRequest $request, $id)
     {
-        //
-    }
+        $member = Member::find($id);
+        $subscription = new Subscription;
+        
+        $membership = Membership::find($request->get('membership_id'));
+        
+        $subscription->setMembership($membership);
+        
+        $member->subscribe($subscription);
+        
+        // payment method
+        $method = PaymentMethod::find($request->input('payment_method_id'));
+        $payment = (new Payment);
+        $payment->payBy($method);
+        
+        $subscription->takePayment($payment);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.members.show', $member->id)
+            ->withSuccess('Subscription created successfully');
     }
 
     /**
@@ -69,17 +72,6 @@ class SubscriptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }
